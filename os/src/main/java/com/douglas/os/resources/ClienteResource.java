@@ -7,21 +7,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douglas.os.dtos.TecnicoDTO;
-import com.douglas.os.services.TecnicoService;
+import com.douglas.os.dtos.ClienteDTO;
+import com.douglas.os.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/tecnicos")
-public class TecnicoResource {
-	
+@RequestMapping("/clientes")
+public class ClienteResource {
+
 	@Autowired
-	TecnicoService service;
-
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){
-		 TecnicoDTO objDTO = new TecnicoDTO(service.findById(id));
-		 return ResponseEntity.ok().body(objDTO);	 
-	}
+	private ClienteService service;
 	
-
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<ClienteDTO> findById(@PathVariable Integer id){
+		ClienteDTO dto = new ClienteDTO(service.findById(id));
+		return ResponseEntity.ok().body(dto);
+	}
 }
