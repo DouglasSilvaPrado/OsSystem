@@ -25,4 +25,12 @@ public class ClienteService {
 	public List<Cliente> findAll(){
 		return repository.findAll();
 	}
+	
+	public Cliente save(Cliente cliente) {
+		Cliente obj = new Cliente();
+		obj.setNome(cliente.getNome());
+		obj.setCpf(cliente.getCpf());
+		obj.setTelefone(cliente.getTelefone());
+		return repository.save(obj);
+	}
 }

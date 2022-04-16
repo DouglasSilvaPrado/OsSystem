@@ -22,8 +22,15 @@ public class TecnicoService {
 				"Objeto não Encontado! ID: " + id + ", Tipo: " + Tecnico.class.getName()));
 	}
 	
-
 	public List<Tecnico> findAll(){
 		return repository.findAll();
+	}
+	
+	public Tecnico save(Tecnico tecnico) {
+		Tecnico obj  = new Tecnico();
+		obj.setNome(tecnico.getNome());
+		obj.setCpf(tecnico.getCpf());
+		obj.setTelefone(tecnico.getTelefone());
+		return repository.save(obj);
 	}
 }
