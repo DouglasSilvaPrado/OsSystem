@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.douglas.os.domain.Cliente;
+import com.douglas.os.exceptions.ObjectNotFoundException;
 import com.douglas.os.repositories.ClienteRepository;
 
 @Service
@@ -16,6 +17,7 @@ public class ClienteService {
 	
 	public Cliente findById(Integer id){
 		Optional<Cliente> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não Encontado! ID: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 }

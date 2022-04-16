@@ -1,5 +1,6 @@
 package com.douglas.os.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,7 @@ public class TecnicoService {
 	}
 	
 
+	public List<Tecnico> findAll(){
+		return repository.findAll();
+	}
 }
