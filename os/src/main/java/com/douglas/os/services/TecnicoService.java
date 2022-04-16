@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.douglas.os.domain.Tecnico;
+import com.douglas.os.dtos.TecnicoDTO;
+import com.douglas.os.exceptions.DataIntergratyViolationException;
 import com.douglas.os.exceptions.ObjectNotFoundException;
 import com.douglas.os.repositories.TecnicoRepository;
 
@@ -26,11 +28,21 @@ public class TecnicoService {
 		return repository.findAll();
 	}
 	
-	public Tecnico save(Tecnico tecnico) {
-		Tecnico obj  = new Tecnico();
-		obj.setNome(tecnico.getNome());
-		obj.setCpf(tecnico.getCpf());
-		obj.setTelefone(tecnico.getTelefone());
-		return repository.save(obj);
+	public Tecnico save(TecnicoDTO objDTO) {
+		if(findByCPF(objDTO) != null) {
+			throw new DataIntergratyViolationException("CPF ja cadastrado na base de dados!");
+		}
+		
+		return repository.save(new Tecnico(null, objDTO.getNome(), objDTO.getCpf(), objDTO.getTelefone()));
 	}
+	
+	private Tecnico findByCPF(TecnicoDTO objDTO) {
+		Tecnico obj = repository.findByCPF(objDTO.getCpf());
+		if(obj != null) {
+			return obj;
+		}
+		return null;
+	}
+	
+	
 }
