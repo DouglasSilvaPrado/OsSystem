@@ -2,8 +2,11 @@ package com.douglas.os.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public enum Status {
 
@@ -20,7 +23,7 @@ public enum Status {
 		}
 		
 		for(Status x : Status.values()) {
-			if(x.equals(x.getCod())) {
+			if(cod.equals(x.getCod())) {
 				return x;
 			}
 		}
