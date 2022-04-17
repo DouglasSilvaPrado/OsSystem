@@ -8,10 +8,12 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.douglas.os.domain.Pessoa;
 import com.douglas.os.domain.Tecnico;
 import com.douglas.os.dtos.TecnicoDTO;
 import com.douglas.os.exceptions.DataIntergratyViolationException;
 import com.douglas.os.exceptions.ObjectNotFoundException;
+import com.douglas.os.repositories.PessoaRepository;
 import com.douglas.os.repositories.TecnicoRepository;
 
 @Service
@@ -19,6 +21,9 @@ public class TecnicoService {
 
 	@Autowired
 	private TecnicoRepository repository;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
 
 	public Tecnico findById(Integer id) {
 		Optional<Tecnico> obj = repository.findById(id);
@@ -50,7 +55,7 @@ public class TecnicoService {
 		return repository.save(oldObj);
 	}
 	
-	public void delete(@Valid Integer id) {
+	public void delete(Integer id) {
 		Tecnico obj = findById(id);
 		if(obj.getList().size() > 0) {
 			throw new DataIntergratyViolationException("Técnico possui Ordens de Serviço, não pode ser deletado!");
@@ -58,8 +63,8 @@ public class TecnicoService {
 		repository.deleteById(id);
 	}
 
-	private Tecnico findByCPF(TecnicoDTO objDTO) {
-		Tecnico obj = repository.findByCPF(objDTO.getCpf());
+	private Pessoa findByCPF(TecnicoDTO objDTO) {
+		Pessoa obj = pessoaRepository.findByCPF(objDTO.getCpf());
 		if (obj != null) {
 			return obj;
 		}
