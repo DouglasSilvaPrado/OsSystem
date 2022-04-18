@@ -1,42 +1,65 @@
 package com.douglas.os.dtos;
 
-import java.io.Serializable;
-
-import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.douglas.os.domain.Tecnico;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
-@NoArgsConstructor
-@Getter
-@Setter
-public class TecnicoDTO implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class TecnicoDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	
-	@NotEmpty(message = "O Campo nome e requerido")
-	private String nome;
-	
-	@CPF
-	@NotEmpty(message = "O Campo cpf e requerido")
-	private String cpf;
-	@NotEmpty(message = "O Campo telefone e requerido")
-	private String telefone;
-	
-	public TecnicoDTO(Tecnico obj) {
-		super();
-		id = obj.getId();
-		nome = obj.getNome();
-		cpf = obj.getCpf();
-		telefone = obj.getTelefone();
-	}
-	
-	
+    private Integer id;
+    @NotEmpty(message = "O campo NOME é requerido")
+    private String nome;
+
+    @CPF
+    @NotEmpty(message = "O campo CPF é requerido")
+    private String cpf;
+    @NotEmpty(message = "O campo TELEFONE é requerido")
+    private String telefone;
+
+    public TecnicoDTO() {
+        super();
+    }
+
+    public TecnicoDTO(Tecnico obj) {
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.cpf = obj.getCpf();
+        this.telefone = obj.getTelefone();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 }
