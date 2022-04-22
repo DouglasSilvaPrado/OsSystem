@@ -1,0 +1,14 @@
+.header {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+h1 {
+    border: 1px solid rgb(97, 96, 96);
+    padding: .4rem 15%;
+    border-radius: 5px;
+    color: #fff;
+}
