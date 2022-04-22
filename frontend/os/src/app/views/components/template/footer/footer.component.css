@@ -1,0 +1,18 @@
+.footer {
+    height: 7%;
+    position:fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+p{
+    color: rgba(255, 255, 255, 0.547);
+    margin: 0;
+    font-size: 1rem;
+    border-radius: 1px solid rgb(97, 96, 96);
+    padding: 0 8%;
+    border-radius: 20px;
+}
